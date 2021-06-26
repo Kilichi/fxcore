@@ -24,4 +24,23 @@ server_scripts {
     'Server/Modules/Functions.lua',
     'Server/Modules/Connection.lua',
     'Server/Modules/Threads.lua',
+    'Server/Modules/Commands.lua',
+}
+
+client_scripts {
+    -- Client
+    'Client/Client.lua',
+
+    -- Modules
+    'Client/Modules/Functions.lua',
+    'Client/Modules/Events.lua',
+}
+
+ui_page 'NUI/index.html'
+
+files {
+    'NUI/*.html',
+    'NUI/Css/*.css',
+    'NUI/Js/*.js',
+    'NUI/Fonts/*.ttf'
 }

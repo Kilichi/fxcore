@@ -119,5 +119,55 @@ FX.Functions = function(source)
         return connection
     end
 
+    -- Commands Functions
+    this.Commands = function()
+        local commands = {}
+    
+        commands.Insert = function(name, func, cb)
+            if cb then
+                RegisterCommand(name, func)
+                FX.Commands[name] = func
+
+                return cb(true)
+            else
+                return false
+            end
+        end
+
+        commands.Register = function(name, func, cb)
+            local found = false
+
+            for b,c in pairs(FX.Commands) do
+                if found then 
+                    return
+                end
+
+                if b == name then
+                    found = true
+                end
+            end
+
+            if found then
+                if cb then
+                    return cb(false)
+                else
+                    return
+                end
+            end
+
+            this:Commands().Insert(name, func, function(done)
+                if done then
+                    if cb then
+                        return cb(true)
+                    else
+                        return false
+                    end
+                end
+            end)
+        end
+
+        return commands
+    end
+
     return this
 end

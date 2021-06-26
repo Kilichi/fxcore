@@ -13,6 +13,14 @@ Config.WantedLevel = false -- Active or Desactive police wanted level
 
 -- Other Configs
 
+Config.Ranks = {
+    ['user'] = 0,
+    ['mod'] = 1,
+    ['admin'] = 2,
+    ['developer'] = 3,
+    ['root'] = 4
+}
+
 Config.Jobs = {
     ['unemployed'] = {
         name = 'unemployed',

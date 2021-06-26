@@ -79,6 +79,22 @@ function createPlayer(source, data, rank, job, money, position)
             return this.rank
         end
 
+        rank.check = function(rank, cb)
+            if Config.Ranks[rank] <= Config.Ranks[this.rank] then
+                if cb then
+                    return cb(true)
+                else
+                    return true
+                end
+            else
+                if cb then
+                    return cb(false)
+                else
+                    return false
+                end
+            end
+        end
+
         rank.set = function(rank, cb)
             this.rank = rank
 
@@ -97,6 +113,8 @@ function createPlayer(source, data, rank, job, money, position)
 
             if cb then
                 return cb(true)
+            else
+                return true
             end
         end
 
