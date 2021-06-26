@@ -87,13 +87,14 @@ FX.Functions = function(source)
             job.rank_salary = Config.Jobs['unemployed'].ranks[1].salary
             job.rank_level = 1
 
-            MySQL.Async.execute('INSERT INTO players (name, license, steam, rank, money, identity, job, position) VALUES (@name, @license, @steam, @rank, @money, @identity, @job, @position)', {
+            MySQL.Async.execute('INSERT INTO players (name, license, steam, rank, money, identity, inventory, job, position) VALUES (@name, @license, @steam, @rank, @money, @identity, @inventory, @job, @position)', {
                 ['@name'] = GetPlayerName(this.src),
                 ['@steam'] = this:Identifier().getSteam(),
                 ['@license'] = this:Identifier().getLicense(),
                 ['@rank'] = Config.Default.Rank,
                 ['@money'] = json.encode(Config.Default.Money),
                 ['@identity'] = json.encode({}),
+                ['@inventory'] = json.encode({}),
                 ['@job'] = json.encode(job),
                 ['@position'] = json.encode(Config.Default.Position)
             }, function(rows)
@@ -109,9 +110,17 @@ FX.Functions = function(source)
             }, function(result)
                 local data = result[1]
                 if data then
-                    local player = createPlayer(this.src, { steam = this:Identifier().getSteam(), license = this:Identifier().getLicense() }, data.rank, data.job, data.money, data.position)
-
+                    local player = createPlayer(this.src, { steam = this:Identifier().getSteam(), license = this:Identifier().getLicense() }, data.rank, data.job, data.money, data.inventory, data.position)
                     FX.Players[this.src] = player
+
+                    player:Global().triggerEvent('fx:spawned', this.src, {
+                        rank = player:Rank().get(),
+                        job = player:Job().getJob(),
+                        cash = player:Cash().getCash(),
+                        bank = player:Bank().getBank(),
+                        inventory = player:Inventory().get(),
+                        position = player:Position().get()
+                    })
                 end
             end)
         end

@@ -2,6 +2,7 @@ FX = {}
 
 FX.Players = {}
 FX.Commands = {}
+FX.Items = {}
 
 -- Server Events
 
@@ -16,6 +17,7 @@ end)
 RegisterNetEvent('fx:load', function()
     local src = source
     local this = FX.Functions(src)
+    local steam = this:Identifier().getSteam()
 
     this:Connection().checkPlayer(steam, function(exists)
         if not exists then
@@ -26,6 +28,16 @@ RegisterNetEvent('fx:load', function()
             end)
         else
             this:Connection().addPlayer()
+        end
+    end)
+end)
+
+-- MySQL Function
+
+MySQL.ready(function()
+    MySQL.Async.fetchAll('SELECT * FROM items', {}, function(items)
+        for b,c in pairs(items) do
+            FX.Items[c.name] = c
         end
     end)
 end)

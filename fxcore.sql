@@ -17,6 +17,23 @@
 CREATE DATABASE IF NOT EXISTS `fxserver` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `fxserver`;
 
+-- Dumping structure for table fxserver.bans
+CREATE TABLE IF NOT EXISTS `bans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `admin` varchar(50) DEFAULT NULL,
+  `steam` varchar(50) DEFAULT NULL,
+  `license` varchar(50) DEFAULT NULL,
+  `reason` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping structure for table fxserver.items
+CREATE TABLE IF NOT EXISTS `items` (
+  `name` varchar(50) DEFAULT NULL,
+  `label` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Dumping structure for table fxserver.players
 CREATE TABLE IF NOT EXISTS `players` (
   `name` varchar(50) DEFAULT NULL,
@@ -26,14 +43,13 @@ CREATE TABLE IF NOT EXISTS `players` (
   `money` longtext DEFAULT NULL,
   `job` longtext DEFAULT NULL,
   `identity` longtext DEFAULT NULL,
+  `inventory` longtext DEFAULT NULL,
   `position` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table fxserver.players: ~3 rows (approximately)
-/*!40000 ALTER TABLE `players` DISABLE KEYS */;
-/*!40000 ALTER TABLE `players` ENABLE KEYS */;
-
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+-- Dumping structure for table fxserver.whitelist
+CREATE TABLE IF NOT EXISTS `whitelist` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `steam` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;

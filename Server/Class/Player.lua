@@ -1,4 +1,4 @@
-function createPlayer(source, data, rank, job, money, position)
+function createPlayer(source, data, rank, job, money, inventory, position)
     local this = {}
 
     this.source = source
@@ -6,6 +6,7 @@ function createPlayer(source, data, rank, job, money, position)
     this.rank = rank
     this.job = json.decode(job)
     this.money = json.decode(money)
+    this.inventory = json.decode(inventory)
     this.position = json.decode(position)
 
     -- Data Functions
@@ -119,6 +120,17 @@ function createPlayer(source, data, rank, job, money, position)
         end
 
         return rank
+    end
+
+    -- Inventory Functions
+    this.Inventory = function()
+        local inventory = {}
+
+        inventory.get = function()
+            return this.inventory
+        end
+        
+        return inventory
     end
 
     -- Cash Functions
