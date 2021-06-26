@@ -17,17 +17,6 @@
 CREATE DATABASE IF NOT EXISTS `fxserver` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `fxserver`;
 
--- Dumping structure for table fxserver.bans
-CREATE TABLE IF NOT EXISTS `bans` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `admin` varchar(50) DEFAULT NULL,
-  `steam` varchar(50) DEFAULT NULL,
-  `license` varchar(50) DEFAULT NULL,
-  `reason` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Dumping structure for table fxserver.items
 CREATE TABLE IF NOT EXISTS `items` (
   `name` varchar(50) DEFAULT NULL,
