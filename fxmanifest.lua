@@ -34,6 +34,7 @@ client_scripts {
     -- Modules
     'Client/Modules/Functions.lua',
     'Client/Modules/Events.lua',
+    'Client/Modules/Threads.lua',
 }
 
 ui_page 'NUI/index.html'
