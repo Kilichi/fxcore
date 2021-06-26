@@ -14,11 +14,12 @@ function createPlayer(source, data, rank, job, money, inventory, position)
         local data = {}
 
         data.save = function(cb)
-            MySQL.Async.execute('UPDATE players SET money = @money, rank = @rank, position = @position, job = @job WHERE steam = @steam', {
+            MySQL.Async.execute('UPDATE players SET money = @money, rank = @rank, position = @position, inventory = @inventory, job = @job WHERE steam = @steam', {
                 ['@steam'] = this.data.steam,
                 ['@money'] = json.encode(this.money),
                 ['@rank'] = this.rank,
                 ['@position'] = json.encode(this.position),
+                ['@inventory'] = json.encode(this.inventory),
                 ['@job'] = json.encode(this.job)
             }, function(rows)
                 if cb then
@@ -97,13 +98,23 @@ function createPlayer(source, data, rank, job, money, inventory, position)
         end
 
         rank.set = function(rank, cb)
-            this.rank = rank
+            if Config.Ranks[rank] then
+                this.rank = rank
 
-            this:Data().save()
-            this:Global().triggerEvent('fx:setRank', this.source, this.rank)
+                this:Data().save()
+                this:Global().triggerEvent('fx:setRank', this.source, this.rank)
 
-            if cb then
-                return cb(true)
+                if cb then
+                    return cb(true)
+                else
+                    return true
+                end
+            else
+                if cb then
+                    return cb(false)
+                else
+                    return false
+                end
             end
         end
 
@@ -137,7 +148,7 @@ function createPlayer(source, data, rank, job, money, inventory, position)
     this.Cash = function()
         local cash = {}
 
-        cash.getCash = function()
+        cash.get = function()
             return this.money.cash
         end
 
@@ -176,7 +187,7 @@ function createPlayer(source, data, rank, job, money, inventory, position)
     this.Bank = function()
         local bank = {}
 
-        bank.getBank = function()
+        bank.get = function()
             return this.money.bank
         end
 
@@ -215,7 +226,7 @@ function createPlayer(source, data, rank, job, money, inventory, position)
     this.Job = function()
         local job = {}
 
-        job.getJob = function(cb)
+        job.get = function(cb)
             if cb then
                 return cb(this.job)
             else

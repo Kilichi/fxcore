@@ -21,6 +21,14 @@ FX.Notification = function(text, type, length, style, cb)
     end
 end
 
+-- Callbacks Functions
+
+FX.UseCallback = function(name, cb, ...)
+    FX.Callbacks[name] = cb
+
+    TriggerServerEvent('fx:callback:useServer', name, ...)
+end
+
 -- Functions Module
 
 FX.Functions = function()

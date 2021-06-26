@@ -7,6 +7,14 @@ RegisterNetEvent('fx:notification', function(text, type)
     FX.Notification(text, type)
 end)
 
+-- Callbacks Event
+RegisterNetEvent('fx:callback:useClient', function(name, ...)
+    if FX.Callbacks[name] then
+        FX.Callbacks[name](...)
+        FX.Callbacks[name] = nil
+    end
+end)
+
 -- Vehicles Events
 RegisterNetEvent('fx:vehicle:create', function(vehicle)
     local model = GetHashKey(vehicle)

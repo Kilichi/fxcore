@@ -1,6 +1,8 @@
 FX = {}
 
 FX.Players = {}
+
+FX.Callbacks = {}
 FX.Commands = {}
 FX.Items = {}
 

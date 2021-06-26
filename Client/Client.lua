@@ -1,6 +1,7 @@
 FX = {}
 
 FX.Data = {}
+FX.Callbacks = {}
 
 -- Client Events
 

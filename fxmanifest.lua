@@ -23,6 +23,8 @@ server_scripts {
     -- Modules
     'Server/Modules/Functions.lua',
     'Server/Modules/Connection.lua',
+    'Server/Modules/Events.lua',
+    
     'Server/Modules/Threads.lua',
     'Server/Modules/Commands.lua',
 }

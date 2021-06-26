@@ -26,6 +26,18 @@ FX.GetPlayers = function(cb)
     end
 end
 
+-- Functions Module (Callback)
+
+FX.RegisterCallback = function(name, cb)
+    FX.Callbacks[name] = cb
+end
+
+FX.UseCallback = function(name, source, cb, ...)
+    if FX.Callbacks[name] then
+        FX.Callbacks[name](source, cb, ...)
+    end
+end
+
 -- Functions Module
 
 FX.Functions = function(source)
@@ -115,9 +127,9 @@ FX.Functions = function(source)
 
                     player:Global().triggerEvent('fx:spawned', this.src, {
                         rank = player:Rank().get(),
-                        job = player:Job().getJob(),
-                        cash = player:Cash().getCash(),
-                        bank = player:Bank().getBank(),
+                        job = player:Job().get(),
+                        cash = player:Cash().get(),
+                        bank = player:Bank().get(),
                         inventory = player:Inventory().get(),
                         position = player:Position().get()
                     })
