@@ -25,6 +25,7 @@ Config.Jobs = {
     ['unemployed'] = {
         name = 'unemployed',
         label = 'Civil',
+        whitelisted = false,
         ranks = {
             [1] = {
                 label = 'Desempleado',
@@ -35,6 +36,7 @@ Config.Jobs = {
     ['police'] = {
         name = 'police',
         label = 'Policía',
+        whitelisted = true,
         ranks = {
             [1] = {
                 label = 'Cadete',
@@ -46,4 +48,15 @@ Config.Jobs = {
             },
         },
     },
+    ['garbage'] = {
+        name = 'garbage',
+        label = 'Basurero',
+        whitelisted = false,
+        ranks = {
+            [1] = {
+                label = 'Basurero',
+                salary = 500
+            },
+        },
+    }
 }

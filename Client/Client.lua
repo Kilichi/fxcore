@@ -3,6 +3,9 @@ FX = {}
 FX.Data = {}
 FX.Callbacks = {}
 
+FX.Ranks = Config.Ranks
+FX.Jobs = Config.Jobs
+
 -- Client Events
 
 RegisterNetEvent('fx:get', function(cb)

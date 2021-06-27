@@ -2,6 +2,9 @@ FX = {}
 
 FX.Players = {}
 
+FX.Ranks = Config.Ranks
+FX.Jobs = Config.Jobs
+
 FX.Callbacks = {}
 FX.Commands = {}
 FX.Items = {}

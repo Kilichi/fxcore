@@ -29,6 +29,12 @@ FX.UseCallback = function(name, cb, ...)
     TriggerServerEvent('fx:callback:useServer', name, ...)
 end
 
+-- Data Functions
+
+FX.GetData = function()
+    return FX.Data
+end
+
 -- Functions Module
 
 FX.Functions = function()
@@ -62,6 +68,47 @@ FX.Functions = function()
         end
 
         return entity
+    end
+
+    -- Render Functions
+    this.Render = function()
+        local render = {}
+        
+        render.drawMarker = function(type, coords, r, g, b)
+            DrawMarker(type, coords, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 1.0, 1.0, 1.0, r, g, b, 100, false, true, 2, true, false, false, false)
+        end
+
+        render.drawText = function(text)
+            if text then
+                SetTextFont(0)
+                SetTextProportional(0)
+                SetTextScale(0.32, 0.32)
+                SetTextColour(0, 255, 255, 255)
+                SetTextDropShadow(0, 0, 0, 0, 255)
+                SetTextEdge(1, 0, 0, 0, 255)
+                SetTextDropShadow()
+                SetTextOutline()
+                SetTextCentre(1)
+                SetTextEntry("STRING")
+                AddTextComponentString(text)
+                DrawText(0.5, 0.93)
+            else
+                SetTextFont(0)
+                SetTextProportional(0)
+                SetTextScale(0.32, 0.32)
+                SetTextColour(0, 255, 255, 255)
+                SetTextDropShadow(0, 0, 0, 0, 255)
+                SetTextEdge(1, 0, 0, 0, 255)
+                SetTextDropShadow()
+                SetTextOutline()
+                SetTextCentre(1)
+                SetTextEntry("STRING")
+                AddTextComponentString('No hay texto')
+                DrawText(0.5, 0.93)
+            end
+        end
+
+        return render
     end
 
     -- Vehicle Functions
