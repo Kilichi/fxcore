@@ -9,7 +9,7 @@ Config.Default = {
 }
 
 Config.EnablePvp = true -- Active or Desactive server pvp
-Config.WantedLevel = false -- Active or Desactive police wanted level
+Config.DisableWantedLevel = true -- Active or Desactive police wanted level
 
 -- Other Configs
 

@@ -73,6 +73,21 @@ this:Commands().Register('removerank', function(source, args)
     end)
 end)
 
+-- Weapon Commands (TEST)
+
+this:Commands().Register('giveweapon', function(source, args)
+    local src = source
+    local ply = FX.GetPlayerById(src)
+
+    ply:Rank().check('admin', function(result)
+        if result then
+            ply:Global().triggerEvent('fx:weapon:add', src, tostring(args[1]), tonumber(args[2]))
+        else
+            ply:Global().triggerEvent('fx:notification', src, 'No tienes permisos para utilizar este comando', 'error')
+        end
+    end)
+end)
+
 -- Teleport Commands
 
 this:Commands().Register('tpm', function(source, args)

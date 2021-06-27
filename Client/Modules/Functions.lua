@@ -70,6 +70,30 @@ FX.Functions = function()
         return entity
     end
 
+    -- Pvp Functions
+    this.Pvp = function()
+        local pvp = {}
+
+        pvp.active = function()
+            SetCanAttackFriendly(PlayerPedId(), true, false)
+	        NetworkSetFriendlyFireOption(true)
+        end
+
+        return pvp
+    end
+
+    -- Wanted Functions
+    this.Wanted = function()
+        local wanted = {}
+
+        wanted.desactive = function()
+            ClearPlayerWantedLevel(PlayerId())
+	        SetMaxWantedLevel(0)
+        end
+
+        return wanted
+    end
+
     -- Render Functions
     this.Render = function()
         local render = {}

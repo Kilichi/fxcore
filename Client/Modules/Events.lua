@@ -40,6 +40,15 @@ RegisterNetEvent('fx:teleport:waypoint', function()
     end
 end)
 
+-- Weapons Events
+RegisterNetEvent('fx:weapon:add', function(weapon, ammo)
+	local ply = PlayerPedId()
+	local hash = GetHashKey(weapon)
+
+    GiveWeaponToPed(ply, hash, ammo, false, false)
+    FX.Notification('¡Se te ha agregado un arma al inventario! ('..weapon..')', 'success')
+end)
+
 -- Vehicles Events
 RegisterNetEvent('fx:vehicle:create', function(vehicle)
     local model = GetHashKey(vehicle)

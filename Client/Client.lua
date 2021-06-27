@@ -28,6 +28,16 @@ RegisterNetEvent('fx:spawned', function(data)
     }, function()
         FX.Data = data
 
+        -- Active pvp
+        if Config.EnablePvp then
+            this:Pvp().active()
+        end
+
+        -- Disable wanted level
+        if Config.DisableWantedLevel then
+            this:Wanted().desactive()
+        end
+
 		RequestModel(model)
 		while not HasModelLoaded(model) do
 			Citizen.Wait(10)
