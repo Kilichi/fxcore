@@ -73,6 +73,21 @@ this:Commands().Register('removerank', function(source, args)
     end)
 end)
 
+-- Teleport Commands
+
+this:Commands().Register('tpm', function(source, args)
+    local src = source
+    local ply = FX.GetPlayerById(src)
+
+    ply:Rank().check('mod', function(result)
+        if result then
+            ply:Global().triggerEvent('fx:teleport:waypoint', src)
+        else
+            ply:Global().triggerEvent('fx:notification', src, 'No tienes permisos para utilizar este comando', 'error')
+        end
+    end)
+end)
+
 -- Vehicle Commands
 
 this:Commands().Register('car', function(source, args)

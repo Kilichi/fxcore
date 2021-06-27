@@ -15,6 +15,31 @@ RegisterNetEvent('fx:callback:useClient', function(name, ...)
     end
 end)
 
+-- Teleport Events
+RegisterNetEvent('fx:teleport:waypoint', function()
+    if DoesBlipExist(GetFirstBlipInfoId(8)) then
+        local wc = GetBlipInfoIdCoord(GetFirstBlipInfoId(8))
+
+        for height = 1, 1000 do
+            SetPedCoordsKeepVehicle(PlayerPedId(), wc.x, wc.y, height + 0.0)
+
+            local foundGround, zPos = GetGroundZFor_3dCoord(wc.x, wc.y, height + 0.0)
+
+            if foundGround then
+                SetPedCoordsKeepVehicle(PlayerPedId(), wc.x, wc.y, height + 0.0)
+
+                break
+            end
+
+            Citizen.Wait(5)
+        end
+
+        FX.Notification('Te has teletransportado', 'success')
+    else
+        FX.Notification('No tienes ningún waypoint marcado en el mapa', 'error')
+    end
+end)
+
 -- Vehicles Events
 RegisterNetEvent('fx:vehicle:create', function(vehicle)
     local model = GetHashKey(vehicle)
