@@ -49,6 +49,14 @@ RegisterNetEvent('fx:weapon:add', function(weapon, ammo)
     FX.Notification('¡Se te ha agregado un arma al inventario! ('..weapon..')', 'success')
 end)
 
+RegisterNetEvent('fx:weapon:addAmmo', function(ammo)
+	local ply = PlayerPedId()
+	local weapon = GetSelectedPedWeapon(ply)
+
+    SetPedAmmo(ply, weapon, ammo, false, false)
+    FX.Notification('¡Se te ha agregado munición al arma que tienes en la mano! ('..ammo..')', 'success')
+end)
+
 -- Vehicles Events
 RegisterNetEvent('fx:vehicle:create', function(vehicle)
     local model = GetHashKey(vehicle)

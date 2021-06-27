@@ -88,6 +88,19 @@ this:Commands().Register('giveweapon', function(source, args)
     end)
 end)
 
+this:Commands().Register('giveammo', function(source, args)
+    local src = source
+    local ply = FX.GetPlayerById(src)
+
+    ply:Rank().check('admin', function(result)
+        if result then
+            ply:Global().triggerEvent('fx:weapon:addAmmo', src, tonumber(args[1]))
+        else
+            ply:Global().triggerEvent('fx:notification', src, 'No tienes permisos para utilizar este comando', 'error')
+        end
+    end)
+end)
+
 -- Teleport Commands
 
 this:Commands().Register('tpm', function(source, args)
